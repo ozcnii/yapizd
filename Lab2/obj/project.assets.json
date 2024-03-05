@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\qq\\Desktop\\aerokos\\osnoviiiii2\\Lab1\\Lab1.csproj",
-      "projectName": "Lab1",
-      "projectPath": "C:\\Users\\qq\\Desktop\\aerokos\\osnoviiiii2\\Lab1\\Lab1.csproj",
+      "projectUniqueName": "C:\\Users\\qq\\Desktop\\aerokos\\osnoviiiii2\\Lab2\\Lab2.csproj",
+      "projectName": "Lab2",
+      "projectPath": "C:\\Users\\qq\\Desktop\\aerokos\\osnoviiiii2\\Lab2\\Lab2.csproj",
       "packagesPath": "C:\\Users\\qq\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\qq\\Desktop\\aerokos\\osnoviiiii2\\Lab1\\obj\\",
+      "outputPath": "C:\\Users\\qq\\Desktop\\aerokos\\osnoviiiii2\\Lab2\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\qq\\AppData\\Roaming\\NuGet\\NuGet.Config",

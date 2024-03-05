@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "keeR1dJMfw3ILdwIhZZ+txc8/e28nZq9ckGsnpYu6oHIaDKrmm6TLXTjZu1af8k/2i1ZXNpcmFUBVu39lpRhEg==",
+  "dgSpecHash": "zNFeAWeb0hoM+ReeUJhAh9G09SPoyw4EBoTCv0XvB8I8Hqg39dds55UBiSFI005ZfKmrAhdMXA8A3OiHKKWKWQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\qq\\Desktop\\aerokos\\osnoviiiii2\\Lab1\\Lab1.csproj",
+  "projectFilePath": "C:\\Users\\qq\\Desktop\\aerokos\\osnoviiiii2\\Lab2\\Lab2.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\qq\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.16\\microsoft.netcore.app.ref.7.0.16.nupkg.sha512",
     "C:\\Users\\qq\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.16\\microsoft.windowsdesktop.app.ref.7.0.16.nupkg.sha512",
