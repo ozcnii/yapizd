@@ -1,6 +1,6 @@
-namespace Lab2
+namespace Lab4
 {
-    public class LinkedListVector
+    public class LinkedListVector : IVectorable
     {
         private Node? head;
 
@@ -85,11 +85,6 @@ namespace Lab2
             }
             else
             {
-                // var node = head;
-                // while(node.next != null) {
-                //     node = node.next;
-                // }
-                // node.next = new Node(value);
                 var node = GetNodeByIndex(Length - 1);
                 node.next = new Node(value);
             }
@@ -152,16 +147,55 @@ namespace Lab2
 
         public override string ToString()
         {
-            if (Length == 0)
+            string res = Length + "";
+            for (int i = 0; i < Length; i++)
             {
-                return "{ }";
+                res += " " + GetNodeByIndex(i).value;
             }
-            string res = "{ ";
-            for (int i = 0; i < Length - 1; i++)
+            return res;
+        }
+
+        public override bool Equals(Object? obj)
+        {
+            IVectorable vector = obj as IVectorable;
+
+            if (vector.Length != Length)
             {
-                res += this[i + 1] + ", ";
+                return false;
             }
-            return res + this[Length] + " }";
+
+            for (int i = 1; i <= Length; i++)
+            {
+                if (vector[i] != this[i])
+                {
+                    return false;
+                }
+
+            }
+
+            return true;
+        }
+
+        public int CompareTo(object? other)
+        {
+            if (other == null)
+            {
+                return -1;
+            }
+
+            return Length.CompareTo((other as IVectorable).Length);
+        }
+
+        public object Clone()
+        {
+            var clone = new ArrayVector(Length);
+
+            for (int i = 1; i <= Length; i++)
+            {
+                clone[i] = this[i];
+            }
+
+            return clone;
         }
 
         private Node GetNodeByIndex(int index)

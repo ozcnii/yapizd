@@ -1,6 +1,6 @@
-namespace Lab2
+namespace Lab3
 {
-    public class LinkedListVector
+    public class LinkedListVector : IVectorable
     {
         private Node? head;
 
@@ -14,6 +14,7 @@ namespace Lab2
                 node.next = new Node();
                 node = node.next;
             }
+
         }
 
         public LinkedListVector() : this(5) { }
@@ -85,11 +86,6 @@ namespace Lab2
             }
             else
             {
-                // var node = head;
-                // while(node.next != null) {
-                //     node = node.next;
-                // }
-                // node.next = new Node(value);
                 var node = GetNodeByIndex(Length - 1);
                 node.next = new Node(value);
             }
@@ -152,16 +148,12 @@ namespace Lab2
 
         public override string ToString()
         {
-            if (Length == 0)
+            string res = Length + "";
+            for (int i = 0; i < Length; i++)
             {
-                return "{ }";
+                res += " " + GetNodeByIndex(i).value;
             }
-            string res = "{ ";
-            for (int i = 0; i < Length - 1; i++)
-            {
-                res += this[i + 1] + ", ";
-            }
-            return res + this[Length] + " }";
+            return res;
         }
 
         private Node GetNodeByIndex(int index)
