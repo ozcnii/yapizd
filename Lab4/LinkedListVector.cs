@@ -7,7 +7,7 @@ namespace Lab4
         public LinkedListVector(int length)
         {
             head = new Node();
-            var node = head;
+            Node node = head;
 
             for (int i = 1; i < length; i++)
             {
@@ -22,8 +22,8 @@ namespace Lab4
         {
             get
             {
-                var length = 0;
-                var node = head;
+                int length = 0;
+                Node? node = head;
                 while (node != null)
                 {
                     node = node.next;
@@ -37,12 +37,12 @@ namespace Lab4
         {
             get
             {
-                var node = GetNodeByIndex(index - 1);
+                Node node = GetNodeByIndex(index - 1);
                 return node.value;
             }
             set
             {
-                var node = GetNodeByIndex(index - 1);
+                Node node = GetNodeByIndex(index - 1);
                 node.value = value;
             }
         }
@@ -51,7 +51,7 @@ namespace Lab4
         {
             int sum = 0;
 
-            var node = head;
+            Node? node = head;
 
             while (node != null)
             {
@@ -64,7 +64,7 @@ namespace Lab4
 
         public void InsertStart(int value)
         {
-            var node = new Node(value, head);
+            Node node = new Node(value, head);
             head = node;
         }
 
@@ -85,7 +85,7 @@ namespace Lab4
             }
             else
             {
-                var node = GetNodeByIndex(Length - 1);
+                Node node = GetNodeByIndex(Length - 1);
                 node.next = new Node(value);
             }
         }
@@ -102,7 +102,7 @@ namespace Lab4
                 head = null;
                 return;
             }
-            var node = GetNodeByIndex(Length - 2);
+            Node node = GetNodeByIndex(Length - 2);
             node.next = null;
         }
 
@@ -110,7 +110,7 @@ namespace Lab4
         {
             if (index == Length)
             {
-                var prevCurrNode = GetNodeByIndex(index - 2);
+                Node prevCurrNode = GetNodeByIndex(index - 2);
                 prevCurrNode.next = new Node(value, prevCurrNode.next);
             }
             else if (index == 1)
@@ -119,7 +119,7 @@ namespace Lab4
             }
             else
             {
-                var prevCurrNode = GetNodeByIndex(index - 2);
+                Node prevCurrNode = GetNodeByIndex(index - 2);
                 prevCurrNode.next = new Node(value, prevCurrNode.next);
             }
         }
@@ -140,7 +140,7 @@ namespace Lab4
             }
             else
             {
-                var prevCurrNode = GetNodeByIndex(index - 2);
+                Node prevCurrNode = GetNodeByIndex(index - 2);
                 prevCurrNode.next = prevCurrNode.next.next;
             }
         }
@@ -159,7 +159,7 @@ namespace Lab4
         {
             IVectorable vector = obj as IVectorable;
 
-            if (vector.Length != Length)
+            if (obj == null || vector.Length != Length)
             {
                 return false;
             }
@@ -188,7 +188,7 @@ namespace Lab4
 
         public object Clone()
         {
-            var clone = new ArrayVector(Length);
+            LinkedListVector clone = new LinkedListVector(Length);
 
             for (int i = 1; i <= Length; i++)
             {
@@ -205,7 +205,7 @@ namespace Lab4
                 throw new IndexOutOfRangeException();
             }
 
-            var node = head;
+            Node? node = head;
 
             for (int i = 0; i < index; i++)
             {

@@ -4,7 +4,7 @@
     {
         public static void Main()
         {
-            Console.WriteLine("Лабораторная работа №2. Выполнил студент 6103-020302D группы Фокин Евгений");
+            Console.WriteLine("Лабораторная работа №3. Выполнил студент 6103-020302D группы Фокин Евгений");
 
             RunMenu(new Dictionary<string, Action>{
                 {"Работа с классом ArrayVector", () => {

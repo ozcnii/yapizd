@@ -60,7 +60,7 @@ namespace Lab4
         {
             IVectorable vector = obj as IVectorable;
 
-            if (vector.Length != Length)
+            if (obj == null || vector.Length != Length)
             {
                 return false;
             }
@@ -89,7 +89,7 @@ namespace Lab4
 
         public object Clone()
         {
-            var clone = new ArrayVector(Length);
+            ArrayVector clone = new ArrayVector(Length);
 
             for (int i = 1; i <= Length; i++)
             {

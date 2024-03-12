@@ -9,7 +9,7 @@ namespace Lab4
                 throw new FormatException("Размерность векторов должна быть одинаковой");
             }
 
-            var result = new ArrayVector(vector1.Length);
+            ArrayVector result = new ArrayVector(vector1.Length);
 
             for (int i = 1; i < vector1.Length + 1; i++)
             {

@@ -1,6 +1,6 @@
 namespace Lab4
 {
-    public class Comparer : IComparer<IVectorable>
+    public class VectorAscComparer : IComparer<IVectorable>
     {
         public int Compare(IVectorable? vector1, IVectorable? vector2)
         {
