@@ -1,93 +1,142 @@
 ﻿using System.Runtime.Serialization.Formatters.Binary;
 
-namespace Lab5
+delegate void MenuAction();
+
+namespace Lab6
 {
     public class Program
     {
         public static void Main()
         {
-            Console.WriteLine("Лабораторная работа №5. Выполнил студент 6103-020302D группы Фокин Евгений");
 
-            RunMenu(new Dictionary<string, Action>{
-                {"Input/Output Vectors", () => {
-                    string FILE_NAME = "test-io-vectors.bin";
+            while (true)
+            {
+                MenuAction menuAction = WriteMenuActions;
+                menuAction();
+                string selectedAction = Console.ReadLine()!.Trim();
 
-                    IVectorable[] vectors = Utility.GetVectorsArray();
-                    Console.WriteLine("Исходный массив векторов:");
-                    for (int i = 0; i < vectors.Length; i++)
-                    {
-                        Console.WriteLine(i + ") " + vectors[i]);
-                    }
+                switch (selectedAction)
+                {
+                    case "0":
+                        return;
+                    case "1":
+                        menuAction += TestInputOutputVectors;
+                        break;
+                    case "2":
+                        menuAction += TestWriteReadVectros;
+                        break;
+                    case "3":
+                        menuAction += TestSerialization;
+                        break;
+                    case "4":
+                        menuAction += Run4LabMenu;
+                        break;
+                    default:
+                        Console.WriteLine("Не выбран ни один пункт меню");
+                        break;
+                }
+                menuAction();
+            }
+        }
 
-                    FileStream outputStream = File.Create(FILE_NAME);
 
-                    Vectors.OutputVectors(vectors, outputStream);
-                    outputStream.Close();
+        private static void TestInputOutputVectors()
+        {
+            Console.Clear();
+            string FILE_NAME = "test-io-vectors.bin";
 
-                    FileStream inputStream = File.OpenRead(FILE_NAME);
-                    IVectorable[] newVectors = Vectors.InputVectors(inputStream);
-                    inputStream.Close();
+            IVectorable[] vectors = Utility.GetVectorsArray();
+            Console.WriteLine("Исходный массив векторов:");
+            for (int i = 0; i < vectors.Length; i++)
+            {
+                Console.WriteLine(i + ") " + vectors[i]);
+            }
 
-                    Console.WriteLine();
-                    Utility.TestVectorsEquality(vectors, newVectors);
-                }},
+            FileStream outputStream = File.Create(FILE_NAME);
 
-                {"Write/Read Vectors", () => {
-                    string FILE_NAME = "test-wr-vectors.txt";
+            Vectors.OutputVectors(vectors, outputStream);
+            outputStream.Close();
 
-                    IVectorable[] vectors = Utility.GetVectorsArray();
-                    Console.WriteLine("Исходный массив векторов:");
-                    for (int i = 0; i < vectors.Length; i++)
-                    {
-                        Console.WriteLine(i + ") " + vectors[i]);
-                    }
+            FileStream inputStream = File.OpenRead(FILE_NAME);
+            IVectorable[] newVectors = Vectors.InputVectors(inputStream);
+            inputStream.Close();
 
-                    StreamWriter streamWriter = File.CreateText(FILE_NAME);
-                    Vectors.WriteVectors(vectors, streamWriter);
-                    streamWriter.Close();
+            Console.WriteLine();
+            Utility.TestVectorsEquality(vectors, newVectors);
+        }
 
-                    StreamReader streamReader = File.OpenText(FILE_NAME);
-                    IVectorable[] newVectors = Vectors.ReadVectors(streamReader);
-                    streamReader.Close();
+        private static void TestWriteReadVectros()
+        {
+            Console.Clear();
+            string FILE_NAME = "test-wr-vectors.txt";
 
-                    Console.WriteLine();
-                    Utility.TestVectorsEquality(vectors, newVectors);
-                }},
+            IVectorable[] vectors = Utility.GetVectorsArray();
+            Console.WriteLine("Исходный массив векторов:");
+            for (int i = 0; i < vectors.Length; i++)
+            {
+                Console.WriteLine(i + ") " + vectors[i]);
+            }
 
-                {"Сериализация", () => {
-                    string FILE_NAME_AV = "test-serialization-av.bat";
-                    string FILE_NAME_LLV = "test-serialization-llv.bat";
+            StreamWriter streamWriter = File.CreateText(FILE_NAME);
+            Vectors.WriteVectors(vectors, streamWriter);
+            streamWriter.Close();
 
-                    IVectorable vectorA = Utility.GetAV();
-                    IVectorable vectorLL = Utility.GetLLV();
-                    Console.WriteLine("Исходный ArrayVectror: " + vectorA);
-                    Console.WriteLine("Исходный LinkedListVector: " + vectorLL);
+            StreamReader streamReader = File.OpenText(FILE_NAME);
+            IVectorable[] newVectors = Vectors.ReadVectors(streamReader);
+            streamReader.Close();
 
-                    FileStream fileStreamA = File.Create(FILE_NAME_AV);
-                    FileStream fileStreamLL = File.Create(FILE_NAME_LLV);
+            Console.WriteLine();
+            Utility.TestVectorsEquality(vectors, newVectors);
+        }
 
-                    BinaryFormatter serializerA = new BinaryFormatter();
-                    BinaryFormatter serializerLL = new BinaryFormatter();
+        private static void TestSerialization()
+        {
+            Console.Clear();
+            string FILE_NAME_AV = "test-serialization-av.bat";
+            string FILE_NAME_LLV = "test-serialization-llv.bat";
 
-                    serializerA.Serialize(fileStreamA, vectorA);
-                    serializerLL.Serialize(fileStreamLL, vectorLL);
+            IVectorable vectorA = Utility.GetAV();
+            IVectorable vectorLL = Utility.GetLLV();
+            Console.WriteLine("Исходный ArrayVectror: " + vectorA);
+            Console.WriteLine("Исходный LinkedListVector: " + vectorLL);
 
-                    fileStreamA.Close();
-                    fileStreamLL.Close();
+            FileStream fileStreamA = File.Create(FILE_NAME_AV);
+            FileStream fileStreamLL = File.Create(FILE_NAME_LLV);
 
-                    fileStreamA = File.OpenRead(FILE_NAME_AV);
-                    fileStreamLL = File.OpenRead(FILE_NAME_LLV);
+            BinaryFormatter serializerA = new BinaryFormatter();
+            BinaryFormatter serializerLL = new BinaryFormatter();
 
-                    IVectorable newVectorA = (IVectorable)serializerA.Deserialize(fileStreamA)!;
-                    IVectorable newVectorLL = (IVectorable)serializerA.Deserialize(fileStreamLL)!;
-                    Console.WriteLine("Десериализованный ArrayVectror: " + newVectorA);
-                    Console.WriteLine("Десериализованный LinkedListVector: " + newVectorLL);
+            serializerA.Serialize(fileStreamA, vectorA);
+            serializerLL.Serialize(fileStreamLL, vectorLL);
 
-                    Utility.TestVectorsEquality([vectorA, vectorLL], [newVectorA, newVectorLL]);
-                }},
+            fileStreamA.Close();
+            fileStreamLL.Close();
 
-                { "Запуск меню прошлой лаборторной работы", () => RunMenu(GetPrevLabMenu())}
-            });
+            fileStreamA = File.OpenRead(FILE_NAME_AV);
+            fileStreamLL = File.OpenRead(FILE_NAME_LLV);
+
+            IVectorable newVectorA = (IVectorable)serializerA.Deserialize(fileStreamA)!;
+            IVectorable newVectorLL = (IVectorable)serializerA.Deserialize(fileStreamLL)!;
+            Console.WriteLine("Десериализованный ArrayVectror: " + newVectorA);
+            Console.WriteLine("Десериализованный LinkedListVector: " + newVectorLL);
+
+            Utility.TestVectorsEquality([vectorA, vectorLL], [newVectorA, newVectorLL]);
+        }
+
+        private static void Run4LabMenu()
+        {
+            Console.Clear();
+            RunMenu(GetPrevLabMenu());
+        }
+
+        private static void WriteMenuActions()
+        {
+            Console.WriteLine("\nВыберите один из пунтов меню");
+            Console.WriteLine("0 - Осознанное завершение");
+            Console.WriteLine("1 - Input/Output Vectors");
+            Console.WriteLine("2 - Write/Read Vectors");
+            Console.WriteLine("3 - Сериализация");
+            Console.WriteLine("4 - Запуск меню 4ой лаборторной работы");
         }
 
         private static class Utility
