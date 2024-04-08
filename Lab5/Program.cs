@@ -12,7 +12,7 @@ namespace Lab5
                 {"Input/Output Vectors", () => {
                     string FILE_NAME = "test-io-vectors.bin";
 
-                    IVectorable[] vectors = Utility.GetVectorsArray();
+                    IVectorable[] vectors = Utility.GetRadnomVectors();
                     Console.WriteLine("Исходный массив векторов:");
                     for (int i = 0; i < vectors.Length; i++)
                     {
@@ -35,7 +35,7 @@ namespace Lab5
                 {"Write/Read Vectors", () => {
                     string FILE_NAME = "test-wr-vectors.txt";
 
-                    IVectorable[] vectors = Utility.GetVectorsArray();
+                    IVectorable[] vectors = Utility.GetRadnomVectors();
                     Console.WriteLine("Исходный массив векторов:");
                     for (int i = 0; i < vectors.Length; i++)
                     {
@@ -58,8 +58,8 @@ namespace Lab5
                     string FILE_NAME_AV = "test-serialization-av.bat";
                     string FILE_NAME_LLV = "test-serialization-llv.bat";
 
-                    IVectorable vectorA = Utility.GetAV();
-                    IVectorable vectorLL = Utility.GetLLV();
+                    IVectorable vectorA = Utility.GetRandomAV();
+                    IVectorable vectorLL = Utility.GetRandomLLV();
                     Console.WriteLine("Исходный ArrayVectror: " + vectorA);
                     Console.WriteLine("Исходный LinkedListVector: " + vectorLL);
 
@@ -80,6 +80,10 @@ namespace Lab5
 
                     IVectorable newVectorA = (IVectorable)serializerA.Deserialize(fileStreamA)!;
                     IVectorable newVectorLL = (IVectorable)serializerA.Deserialize(fileStreamLL)!;
+
+                    fileStreamA.Close();
+                    fileStreamLL.Close();
+
                     Console.WriteLine("Десериализованный ArrayVectror: " + newVectorA);
                     Console.WriteLine("Десериализованный LinkedListVector: " + newVectorLL);
 
@@ -92,12 +96,50 @@ namespace Lab5
 
         private static class Utility
         {
+            public static void FillVectorRandomValues(IVectorable vector)
+            {
+                Random random = new Random();
+
+                for (int i = 0; i < vector.Length; i++)
+                {
+                    vector[i + 1] = random.Next(-1000, 1001);
+                }
+            }
+
+            public static IVectorable[] GetRadnomVectors()
+            {
+                IVectorable vector1 = new ArrayVector(3);
+                FillVectorRandomValues(vector1);
+                IVectorable vector2 = new ArrayVector(4);
+                FillVectorRandomValues(vector2);
+                IVectorable vector3 = new LinkedListVector(2);
+                FillVectorRandomValues(vector3);
+                IVectorable vector4 = new LinkedListVector(7);
+                FillVectorRandomValues(vector4);
+                IVectorable vector5 = new ArrayVector(6);
+                FillVectorRandomValues(vector5);
+                IVectorable vector6 = new LinkedListVector(2);
+                FillVectorRandomValues(vector6);
+                IVectorable vector7 = new LinkedListVector(7);
+                FillVectorRandomValues(vector7);
+                return new IVectorable[]
+                {
+                    vector1,
+                    vector2,
+                    vector3,
+                    vector4,
+                    vector5,
+                    vector6,
+                    vector7
+                };
+            }
+
             public static IVectorable[] GetVectorsArray()
             {
                 IVectorable vector1 = new ArrayVector(3);
-                vector1[1] = 10;
-                vector1[2] = 20;
-                vector1[3] = 30;
+                vector1[1] = -1000;
+                vector1[2] = 2000;
+                vector1[3] = 3000;
 
                 IVectorable vector2 = new ArrayVector(4);
                 vector2[1] = 1;
@@ -151,27 +193,17 @@ namespace Lab5
                 };
             }
 
-            public static LinkedListVector GetLLV()
+            public static LinkedListVector GetRandomLLV()
             {
                 LinkedListVector vector = new LinkedListVector(7);
-                vector[1] = 1;
-                vector[2] = 3;
-                vector[3] = 5;
-                vector[4] = 7;
-                vector[5] = 9;
-                vector[6] = 11;
-                vector[7] = 13;
+                FillVectorRandomValues(vector);
                 return vector;
             }
 
-            public static ArrayVector GetAV()
+            public static ArrayVector GetRandomAV()
             {
                 ArrayVector vector = new ArrayVector(5);
-                vector[1] = 1;
-                vector[2] = 2;
-                vector[3] = 3;
-                vector[4] = 4;
-                vector[5] = 5;
+                FillVectorRandomValues(vector);
                 return vector;
             }
 
