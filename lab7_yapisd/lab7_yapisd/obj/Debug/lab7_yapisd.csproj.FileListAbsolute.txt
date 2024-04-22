@@ -1,0 +1,10 @@
+C:\Users\qq\source\repos\lab7_yapisd\lab7_yapisd\bin\Debug\lab7_yapisd.exe.config
+C:\Users\qq\source\repos\lab7_yapisd\lab7_yapisd\bin\Debug\lab7_yapisd.exe
+C:\Users\qq\source\repos\lab7_yapisd\lab7_yapisd\bin\Debug\lab7_yapisd.pdb
+C:\Users\qq\source\repos\lab7_yapisd\lab7_yapisd\obj\Debug\lab7_yapisd.csproj.AssemblyReference.cache
+C:\Users\qq\source\repos\lab7_yapisd\lab7_yapisd\obj\Debug\lab7_yapisd.Properties.Resources.resources
+C:\Users\qq\source\repos\lab7_yapisd\lab7_yapisd\obj\Debug\lab7_yapisd.csproj.GenerateResource.cache
+C:\Users\qq\source\repos\lab7_yapisd\lab7_yapisd\obj\Debug\lab7_yapisd.csproj.CoreCompileInputs.cache
+C:\Users\qq\source\repos\lab7_yapisd\lab7_yapisd\obj\Debug\lab7_yapisd.exe
+C:\Users\qq\source\repos\lab7_yapisd\lab7_yapisd\obj\Debug\lab7_yapisd.pdb
+C:\Users\qq\source\repos\lab7_yapisd\lab7_yapisd\obj\Debug\lab7_yapisd.Form1.resources
