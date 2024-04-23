@@ -1,0 +1,10 @@
+C:\Users\qq\source\repos\winlab21\winlab21\obj\Debug\winlab21.csproj.AssemblyReference.cache
+C:\Users\qq\source\repos\winlab21\winlab21\obj\Debug\winlab21.Form1.resources
+C:\Users\qq\source\repos\winlab21\winlab21\obj\Debug\winlab21.Properties.Resources.resources
+C:\Users\qq\source\repos\winlab21\winlab21\obj\Debug\winlab21.csproj.GenerateResource.cache
+C:\Users\qq\source\repos\winlab21\winlab21\obj\Debug\winlab21.csproj.CoreCompileInputs.cache
+C:\Users\qq\source\repos\winlab21\winlab21\bin\Debug\winlab21.exe.config
+C:\Users\qq\source\repos\winlab21\winlab21\bin\Debug\winlab21.exe
+C:\Users\qq\source\repos\winlab21\winlab21\bin\Debug\winlab21.pdb
+C:\Users\qq\source\repos\winlab21\winlab21\obj\Debug\winlab21.exe
+C:\Users\qq\source\repos\winlab21\winlab21\obj\Debug\winlab21.pdb
